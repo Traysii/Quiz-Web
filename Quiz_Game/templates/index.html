@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <title>QUIZ GAME</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(Document).ready(function()
+        {
+            $("#btn1").click(function()
+            {
+                $(".rbtn").show();
+                $(".rbtn").attr("disabled", true);
+            });
+        });
+    </script>
+    <style>
+        #bt a {
+            text-decoration: none; 
+            margin-left: 10px; 
+            color: black;
+            border: 1px solid rgb(103, 101, 101);
+            font-size: 15px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            background-color: rgb(241, 240, 240);
+        }
+    </style>
+</head>
+<body style="padding-bottom: 20px;">
+    <h1 style="padding: 10px;">Welcome to the quiz-game!</h1>
+    <div style="padding: 0 10px;">
+       <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'logout' %}">Log out</a> 
+    </div>
+
+    <div style="padding-left: 30px;">
+        {% for result in Question %}
+        <table>
+            <tr>
+                <td style="font-weight: bold;">{{ result.id}}, {{ result.question_text }}</td>
+                <br>
+            </tr>
+            <tr>
+                <td><input type="radio" id="op1" class="rbtn" name="{{ result.id}}" value="{{ result.op1 }}">{{ result.op1 }}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="op2" class="rbtn" name="{{ result.id}}" value="{{ result.op2 }}">{{ result.op2 }}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="op3" class="rbtn" name="{{ result.id}}" value="{{ result.op3 }}">{{ result.op3 }}</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="op4" class="rbtn" name="{{ result.id}}" value="{{ result.op4 }}">{{ result.op4 }}</td>
+            </tr>
+            <tr>
+                <td><label id="ans" class="rbtn" style="display: none; color: limegreen;"><b>Correct answer: {{ result.ans }}</b></label></td>
+            </tr>
+            <hr>
+        </table>
+        {% endfor %}
+        <br><br>
+
+        <!-- <div>
+            <span>
+                {% if Question.has_previous %}
+                    <a href="?page={{ Question.previous_page_number }}">Previous</a>
+                {% endif %}
+            </span>
+            <span>
+                Page {{ Question.number }} of {{ Question.paginator.num_pages }}.
+            </span>
+            <span>
+                {% if Question.has_next %}
+                    <a href="?page={{ Question.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div> -->
+        <br>
+        <div id="bt" style="text-align: center;">
+            <input type="submit" value="Submit" id="btn1">
+            <a href="{% url 'quizpage' %}">Reset</a>
+            <!-- <a href="{% url 'result' %}">Finish</a> -->
+        </div>
+    </div>
+    
+
+</body>
+</html>

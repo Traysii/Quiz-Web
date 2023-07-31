@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<style>
+    body{
+        padding: 0 10px;
+    }
+</style>
+<body>
+    <h1>QUIZ GAME</h1>
+
+    <a href="{% url 'home' %}">Home</a>
+    <span>/</span>
+
+    {% if current_user %}
+        <a href="{% url 'logout' %}">Log out</a>
+        <hr>
+        <h2>Welcome <span style="color: dodgerblue;">{{ current_user }}</span>!</h2>
+        <br>
+        <!-- <h3>Nhập số câu hỏi muốn chơi</h3> -->
+        <h3>Nhấn OK để bắt đầu</h3>
+        <!-- <input type="text" name="q-amount">
+        <br><br> -->
+        <a href="{% url 'quizpage' %}" type="submit" value="OK" style="text-decoration: none; color: black;">OK</a>
+
+    {% else %}
+        <a href="{% url 'login' %}">Log in</a>
+        <span>/</span>
+        <a href="{% url 'signup' %}">Sign up</a>
+        <hr>
+        <h2>Login to access this website!</h2>
+    {% endif %}
+
+    {% block body %}{% endblock %}
+</body>
+</html>

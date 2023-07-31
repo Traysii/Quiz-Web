@@ -1,0 +1,17 @@
+{% extends 'depend.html' %}
+
+{% block content %}
+    <h1 style="padding: 10px;">Your quiz-game result!</h1>
+    <div style="padding: 0 10px;">
+       <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'logout' %}">Log out</a> 
+    </div>
+    <hr><br>
+    <div style="padding-left: 30px;">
+        <p>Correct answers: {{ correct }}</p>
+        <p>Incorrect answers: {{ wrong }}</p>
+        <p>Total questions: {{ total }}</p>
+    </div>
+
+{% endblock %}
